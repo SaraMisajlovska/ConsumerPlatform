@@ -18,6 +18,7 @@
         <confluent.kafka.avro.serializer.version>7.4.0</confluent.kafka.avro.serializer.version>
         <avro.version>1.11.2</avro.version>
         <version>20240303</version>
+        <producer.platform.version>0.0.1-SNAPSHOT</producer.platform.version>
     </properties>
 
     <repositories>
@@ -33,10 +34,17 @@
             <artifactId>Consumer_SPI</artifactId>
         </dependency>
 
-        <!-- TODO smisajlo 19.10.24: add kafka and avro dependencies -->
+        <!-- Dependency to the producer platform for the schema -->
+        <dependency>
+            <groupId>mk.ukim.finki.thesis</groupId>
+            <artifactId>Producer_Integration_Kafka</artifactId>
+            <version>${producer.platform.version}</version>
+        </dependency>
+
+        <!-- Kafka and avro dependencies -->
         <dependency>
             <groupId>org.springframework.kafka</groupId>
-            <artifactId>spring-kafka-test</artifactId>
+            <artifactId>spring-kafka</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -44,16 +52,65 @@
             <artifactId>kafka-avro-serializer</artifactId>
             <version>${confluent.kafka.avro.serializer.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.avro</groupId>
-            <artifactId>avro</artifactId>
-            <version>1.11.0</version>
-        </dependency>
-        <dependency>
-            <groupId>io.confluent</groupId>
-            <artifactId>kafka-schema-registry-client</artifactId>
-            <version>7.4.0</version>
-        </dependency>
     </dependencies>
+
+    <!-- Plugins for schema unpacking -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.3.0</version>
+                <executions>
+                    <execution>
+                        <id>unpack-producer-avro-schema-yaml</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>mk.ukim.finki.thesis</groupId>
+                                    <artifactId>Producer_Integration_Kafka</artifactId>
+                                    <version>${producer.platform.version}</version>
+                                    <type>jar</type>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${project.build.directory}/generated-sources/avro</outputDirectory>
+                                    <includes>**/*.avsc</includes>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.avro</groupId>
+                <artifactId>avro-maven-plugin</artifactId>
+                <version>1.11.3</version>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>schema</goal>
+                        </goals>
+                        <configuration>
+                            <sourceDirectory>${project.build.directory}/generated-sources/avro/avroschema/
+                            </sourceDirectory>
+                            <imports>
+                                <import>${project.build.directory}/generated-sources/avro/avroschema/ProductInfo.avsc</import>
+                                <import>${project.build.directory}/generated-sources/avro/avroschema/ProductView.avsc</import>
+                                <import>${project.build.directory}/generated-sources/avro/avroschema/AddToCart.avsc</import>
+                                <import>${project.build.directory}/generated-sources/avro/avroschema/CheckoutAbandoned.avsc</import>
+                                <import>${project.build.directory}/generated-sources/avro/avroschema/SearchQuery.avsc</import>
+                            </imports>
+                            <outputDirectory>${project.build.directory}/generated-sources/avro</outputDirectory>
+                            <stringType>String</stringType>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
