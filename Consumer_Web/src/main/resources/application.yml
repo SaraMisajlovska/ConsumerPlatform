@@ -15,3 +15,14 @@ spring:
         specific:
           avro:
             reader: "true"
+kafka:
+  topic:
+    producer-one:
+      user-actions: "mk.ukim.finki.thesis.producer-one.user-actions"
+logging:
+  level:
+    org.apache.kafka: INFO
+    org.springframework.kafka: INFO
+#    org.springframework: DEBUG
+server:
+  port: 8888

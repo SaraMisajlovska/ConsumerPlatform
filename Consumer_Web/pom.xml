@@ -23,6 +23,10 @@
             <artifactId>Consumer_SPI</artifactId>
         </dependency>
         <dependency>
+            <groupId>mk.ukim.finki.thesis</groupId>
+            <artifactId>Consumer_Integration_Kafka</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>

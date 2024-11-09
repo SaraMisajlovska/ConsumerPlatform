@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication(scanBasePackages = {
         "mk.ukim.finki.thesis.web",
         "mk.ukim.finki.thesis.spi",
-        "mk.ukim.finki.thesis.kafka"})
+        "mk.ukim.finki.thesis.kafkaconsumer"})
 public class ConsumerApplication {
   public static void main(String[] args) {
     SpringApplication.run(ConsumerApplication.class, args);

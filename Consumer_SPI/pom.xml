@@ -18,7 +18,10 @@
     </properties>
 
     <dependencies>
-
+        <dependency>
+            <groupId>mk.ukim.finki.thesis</groupId>
+            <artifactId>Consumer_Integration_Kafka</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

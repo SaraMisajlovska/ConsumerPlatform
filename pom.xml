@@ -14,11 +14,10 @@
     <packaging>pom</packaging>
     <name>consumer</name>
     <description>consumer</description>
-    <url/>
 
     <modules>
-        <module>Consumer_SPI</module>
         <module>Consumer_Integration_Kafka</module>
+        <module>Consumer_SPI</module>
         <module>Consumer_Web</module>
     </modules>
 

@@ -29,10 +29,6 @@
     </repositories>
 
     <dependencies>
-        <dependency>
-            <groupId>mk.ukim.finki.thesis</groupId>
-            <artifactId>Consumer_SPI</artifactId>
-        </dependency>
 
         <!-- Dependency to the producer platform for the schema -->
         <dependency>
@@ -45,12 +41,15 @@
         <dependency>
             <groupId>org.springframework.kafka</groupId>
             <artifactId>spring-kafka</artifactId>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>io.confluent</groupId>
             <artifactId>kafka-avro-serializer</artifactId>
             <version>${confluent.kafka.avro.serializer.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
         </dependency>
     </dependencies>
 
@@ -98,11 +97,17 @@
                             <sourceDirectory>${project.build.directory}/generated-sources/avro/avroschema/
                             </sourceDirectory>
                             <imports>
-                                <import>${project.build.directory}/generated-sources/avro/avroschema/ProductInfo.avsc</import>
-                                <import>${project.build.directory}/generated-sources/avro/avroschema/ProductView.avsc</import>
-                                <import>${project.build.directory}/generated-sources/avro/avroschema/AddToCart.avsc</import>
-                                <import>${project.build.directory}/generated-sources/avro/avroschema/CheckoutAbandoned.avsc</import>
-                                <import>${project.build.directory}/generated-sources/avro/avroschema/SearchQuery.avsc</import>
+                                <import>${project.build.directory}/generated-sources/avro/avroschema/ProductInfo.avsc
+                                </import>
+                                <import>${project.build.directory}/generated-sources/avro/avroschema/ProductView.avsc
+                                </import>
+                                <import>${project.build.directory}/generated-sources/avro/avroschema/AddToCart.avsc
+                                </import>
+                                <import>
+                                    ${project.build.directory}/generated-sources/avro/avroschema/CheckoutAbandoned.avsc
+                                </import>
+                                <import>${project.build.directory}/generated-sources/avro/avroschema/SearchQuery.avsc
+                                </import>
                             </imports>
                             <outputDirectory>${project.build.directory}/generated-sources/avro</outputDirectory>
                             <stringType>String</stringType>
@@ -112,5 +117,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
