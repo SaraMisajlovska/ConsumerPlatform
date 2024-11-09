@@ -17,6 +17,7 @@
 
     <modules>
         <module>Consumer_Integration_Kafka</module>
+        <module>Consumer_Persistence</module>
         <module>Consumer_SPI</module>
         <module>Consumer_Web</module>
     </modules>
@@ -53,6 +54,11 @@
             <dependency>
                 <groupId>mk.ukim.finki.thesis</groupId>
                 <artifactId>Consumer_SPI</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>mk.ukim.finki.thesis</groupId>
+                <artifactId>Consumer_Persistence</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>
         </dependencies>

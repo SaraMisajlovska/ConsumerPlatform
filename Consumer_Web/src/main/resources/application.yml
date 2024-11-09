@@ -1,6 +1,22 @@
 spring:
   application:
     name: consumer
+  datasource:
+    url: jdbc:postgresql://localhost:5432/thesis-eshop
+    username: postgres
+    password: admin
+    hikari:
+      connection-timeout: 20000
+      maximum-pool-size: 10
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
   kafka:
     bootstrap-servers: "127.0.0.1:9092"
     consumer:
@@ -23,6 +39,6 @@ logging:
   level:
     org.apache.kafka: INFO
     org.springframework.kafka: INFO
-#    org.springframework: DEBUG
+    org.springframework: INFO
 server:
   port: 8888
