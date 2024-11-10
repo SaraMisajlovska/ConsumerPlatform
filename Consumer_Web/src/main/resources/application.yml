@@ -2,26 +2,26 @@ spring:
   application:
     name: consumer
   datasource:
-    url: jdbc:postgresql://localhost:5432/thesis-eshop
+    url: jdbc:postgresql://localhost:5432/consumer-actions
     username: postgres
     password: admin
     hikari:
       connection-timeout: 20000
       maximum-pool-size: 10
   jpa:
+    show-sql: true
     properties:
       hibernate:
         jdbc:
           lob:
             non_contextual_creation: true
     hibernate:
-      ddl-auto: create-drop
-    show-sql: true
+      ddl-auto: update
   kafka:
     bootstrap-servers: "127.0.0.1:9092"
     consumer:
       group-id: "thesis-consumer"
-      keyDeserializer: "org.apache.kafka.common.serialization.StringDeserializer"
+      keyDeserializer: "mk.ukim.finki.thesis.common.serializer.MessageKeyDeserializer"
       valueDeserializer: "io.confluent.kafka.serializers.KafkaAvroDeserializer"
       autoOffsetReset: "earliest"
       properties:
@@ -35,10 +35,13 @@ kafka:
   topic:
     producer-one:
       user-actions: "mk.ukim.finki.thesis.producer-one.user-actions"
+
 logging:
   level:
     org.apache.kafka: INFO
     org.springframework.kafka: INFO
     org.springframework: INFO
+    org.hibernate: DEBUG
+
 server:
   port: 8888
