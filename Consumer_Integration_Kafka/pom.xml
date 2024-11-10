@@ -29,6 +29,14 @@
     </repositories>
 
     <dependencies>
+        <dependency>
+            <groupId>mk.ukim.finki.thesis</groupId>
+            <artifactId>Common_Library</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>mk.ukim.finki.thesis</groupId>
+            <artifactId>Consumer_Persistence</artifactId>
+        </dependency>
 
         <!-- Dependency to the producer platform for the schema -->
         <dependency>
