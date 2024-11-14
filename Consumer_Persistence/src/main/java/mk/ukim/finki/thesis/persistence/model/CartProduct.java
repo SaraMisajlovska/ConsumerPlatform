@@ -5,25 +5,21 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "add_to_cart")
-public class AddToCart {
+@Table(name = "cart_product")
+public class CartProduct {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @Column(name = "user_id", nullable = false)
-  private Long userId;
+  @ManyToOne
+  @JoinColumn(name = "cart_id", nullable = false)
+  private Cart cart;
 
   @ManyToOne
   @JoinColumn(name = "product_id", nullable = false)
-  private ProductInfo product;
+  private Product product;
 
   @Column(name = "quantity", nullable = false)
-  private Integer quantity;
-
-  @Column(name = "timestamp", nullable = false)
-  private Long timestamp;
-
-  // Getters and Setters
+  private Integer quantity = 0;
 }

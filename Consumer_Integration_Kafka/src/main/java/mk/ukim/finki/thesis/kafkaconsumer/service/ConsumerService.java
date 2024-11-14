@@ -14,7 +14,7 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class ProductViewConsumerService {
+public class ConsumerService {
 
   private final List<RecordHandler> recordHandlers;
 

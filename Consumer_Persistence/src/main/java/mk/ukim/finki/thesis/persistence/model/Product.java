@@ -3,14 +3,19 @@ package mk.ukim.finki.thesis.persistence.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Entity
-@Table(name = "product_info")
-public class ProductInfo {
+@Table(name = "product")
+public class Product {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long productId;
+
+  @Column(name = "external_product_id", nullable = false)
+  private Long externalProductId;
 
   @Column(name = "name", nullable = false)
   private String name;
@@ -21,5 +26,9 @@ public class ProductInfo {
   @Column(name = "price", nullable = false)
   private Float price;
 
-  // Getters and Setters
+  @ManyToMany(mappedBy = "products")
+  private List<Cart> carts;
+
+  @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+  private List<CartProduct> cartProducts;
 }
