@@ -7,8 +7,6 @@ import mk.ukim.finki.thesis.persistence.repository.SearchWordFrequencyRepository
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -41,15 +39,5 @@ public class SearchWordFrequencyPersistenceService {
     newWordFrequency.setWord(word);
     newWordFrequency.setCount(0);
     return searchWordFrequencyRepository.save(newWordFrequency);
-  }
-
-  public List<String> getTopSearchedWords(int limit) {
-    List<SearchWordFrequency> frequencies = searchWordFrequencyRepository.findAll();
-
-    return frequencies.stream()
-            .sorted(Comparator.reverseOrder())
-            .limit(limit)
-            .map(SearchWordFrequency::getWord)
-            .toList();
   }
 }
