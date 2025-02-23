@@ -1,16 +1,21 @@
 package mk.ukim.finki.thesis.persistence.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import mk.ukim.finki.thesis.common.enums.CancellationReason;
 import mk.ukim.finki.thesis.persistence.enums.CartStatus;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "cart")
+@RequiredArgsConstructor
 public class Cart {
 
   @Id
@@ -22,15 +27,15 @@ public class Cart {
   private Long externalCartId;
 
   @Column(name = "time_of_update", nullable = false)
-  private LocalDate timeOfUpdate;
+  private LocalDateTime timeOfUpdate;
 
   @Enumerated(EnumType.STRING)
   @Column(name = "status", nullable = false)
   private CartStatus status;
 
-  @ManyToOne
-  @JoinColumn(name = "user_id", nullable = false)
-  private User user;
+  @Enumerated(EnumType.STRING)
+  @Column(name = "cancellation_reason", nullable = true)
+  private CancellationReason cancellationReason;
 
   @ManyToMany
   @JoinTable(
@@ -48,7 +53,10 @@ public class Cart {
     this.cartProducts.add(cartProduct);
   }
 
-  public void removeCartProduct(CartProduct cartProduct) {
-    this.cartProducts.removeIf(cp -> cp.getProduct().equals(cartProduct.getProduct()));
+  public void markAsAbandoned(CartProduct cartProduct) {
+    this.cartProducts.stream()
+            .filter(product -> product.getProduct().equals(cartProduct.getProduct()))
+            .findFirst()
+            .ifPresent(CartProduct::markAsAbandoned);
   }
 }

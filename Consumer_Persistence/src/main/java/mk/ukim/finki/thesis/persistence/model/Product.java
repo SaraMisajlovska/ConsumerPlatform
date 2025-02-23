@@ -1,13 +1,18 @@
 package mk.ukim.finki.thesis.persistence.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "product")
+@RequiredArgsConstructor
 public class Product {
 
   @Id
@@ -26,9 +31,11 @@ public class Product {
   @Column(name = "price", nullable = false)
   private Float price;
 
+  @JsonIgnore
   @ManyToMany(mappedBy = "products")
   private List<Cart> carts;
 
+  @JsonIgnore
   @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
   private List<CartProduct> cartProducts;
 }

@@ -22,4 +22,11 @@ public class CartProduct {
 
   @Column(name = "quantity", nullable = false)
   private Integer quantity = 0;
+
+  @Column(name = "abandoned", nullable = false)
+  private boolean isAbandoned = false;
+
+  public void markAsAbandoned() {
+    this.isAbandoned = true;
+  }
 }
