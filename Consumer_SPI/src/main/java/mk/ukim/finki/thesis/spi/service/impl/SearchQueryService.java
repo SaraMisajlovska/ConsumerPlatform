@@ -1,4 +1,4 @@
-package mk.ukim.finki.thesis.spi.service;
+package mk.ukim.finki.thesis.spi.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import mk.ukim.finki.thesis.persistence.model.SearchLog;

@@ -1,7 +1,7 @@
 package mk.ukim.finki.thesis.web.controller;
 
 import lombok.RequiredArgsConstructor;
-import mk.ukim.finki.thesis.spi.service.SearchQueryService;
+import mk.ukim.finki.thesis.spi.service.impl.SearchQueryService;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;

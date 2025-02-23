@@ -36,12 +36,12 @@ kafka:
     producer-one:
       user-actions: "mk.ukim.finki.thesis.producer-one.user-actions"
 
-logging:
-  level:
-    org.apache.kafka: INFO
-    org.springframework.kafka: INFO
-    org.springframework: INFO
-    org.hibernate: DEBUG
+#logging:
+#  level:
+#    org.apache.kafka: INFO
+#    org.springframework.kafka: INFO
+#    org.springframework: INFO
+#    org.hibernate: DEBUG
 
 server:
   port: 8888
