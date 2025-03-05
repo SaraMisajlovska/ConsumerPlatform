@@ -1,4 +1,4 @@
-package mk.ukim.finki.thesis.spi.service.enumeration;
+package mk.ukim.finki.thesis.common.enums;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

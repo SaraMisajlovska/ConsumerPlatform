@@ -34,7 +34,7 @@ public class Cart {
   private CartStatus status;
 
   @Enumerated(EnumType.STRING)
-  @Column(name = "cancellation_reason", nullable = true)
+  @Column(name = "cancellation_reason")
   private CancellationReason cancellationReason;
 
   @ManyToMany

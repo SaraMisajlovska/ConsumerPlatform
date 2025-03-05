@@ -24,22 +24,4 @@ public class ProductPersistenceService {
     return productRepository.getByExternalProductId(product.getExternalProductId())
             .orElseGet(() -> productRepository.save(product));
   }
-
-
-
-//  /**
-//   * Retrieves the product by external product id.
-//   *
-//   * @param externalProductId the external id coming from the producers.
-//   *
-//   * @return the product from the DB or null;
-//   */
-//  public Product getProduct(Long externalProductId) {
-//    return productRepository.getByExternalProductId(externalProductId)
-//            .orElse(null);
-//  }
-//
-//  public Product saveProduct(Product product) {
-//    return productRepository.save(product);
-//  }
 }
